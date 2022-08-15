@@ -365,29 +365,40 @@ func PossibleDiskStateValues() []DiskState {
 type DiskStorageAccountTypes string
 
 const (
-	// DiskStorageAccountTypesPremiumLRS Premium SSD locally redundant storage. Best for production and
-	// performance sensitive workloads.
+	// DiskStorageAccountTypesPremiumLRS - Premium SSD locally redundant storage. Best for production and performance sensitive
+	// workloads.
 	DiskStorageAccountTypesPremiumLRS DiskStorageAccountTypes = "Premium_LRS"
-	// DiskStorageAccountTypesPremiumZRS Premium SSD zone redundant storage. Best for the production workloads
-	// that need storage resiliency against zone failures.
+	// DiskStorageAccountTypesPremiumV2LRS - Premium SSD v2 locally redundant storage. Best for production and performance-sensitive
+	// workloads that consistently require low latency and high IOPS and throughput.
+	DiskStorageAccountTypesPremiumV2LRS DiskStorageAccountTypes = "PremiumV2_LRS"
+	// DiskStorageAccountTypesPremiumZRS - Premium SSD zone redundant storage. Best for the production workloads that need storage
+	// resiliency against zone failures.
 	DiskStorageAccountTypesPremiumZRS DiskStorageAccountTypes = "Premium_ZRS"
-	// DiskStorageAccountTypesStandardLRS Standard HDD locally redundant storage. Best for backup,
-	// non-critical, and infrequent access.
+	// DiskStorageAccountTypesStandardLRS - Standard HDD locally redundant storage. Best for backup, non-critical, and infrequent
+	// access.
 	DiskStorageAccountTypesStandardLRS DiskStorageAccountTypes = "Standard_LRS"
-	// DiskStorageAccountTypesStandardSSDLRS Standard SSD locally redundant storage. Best for web servers,
-	// lightly used enterprise applications and dev/test.
+	// DiskStorageAccountTypesStandardSSDLRS - Standard SSD locally redundant storage. Best for web servers, lightly used enterprise
+	// applications and dev/test.
 	DiskStorageAccountTypesStandardSSDLRS DiskStorageAccountTypes = "StandardSSD_LRS"
-	// DiskStorageAccountTypesStandardSSDZRS Standard SSD zone redundant storage. Best for web servers, lightly
-	// used enterprise applications and dev/test that need storage resiliency against zone failures.
+	// DiskStorageAccountTypesStandardSSDZRS - Standard SSD zone redundant storage. Best for web servers, lightly used enterprise
+	// applications and dev/test that need storage resiliency against zone failures.
 	DiskStorageAccountTypesStandardSSDZRS DiskStorageAccountTypes = "StandardSSD_ZRS"
-	// DiskStorageAccountTypesUltraSSDLRS Ultra SSD locally redundant storage. Best for IO-intensive workloads
-	// such as SAP HANA, top tier databases (for example, SQL, Oracle), and other transaction-heavy workloads.
+	// DiskStorageAccountTypesUltraSSDLRS - Ultra SSD locally redundant storage. Best for IO-intensive workloads such as SAP HANA,
+	// top tier databases (for example, SQL, Oracle), and other transaction-heavy workloads.
 	DiskStorageAccountTypesUltraSSDLRS DiskStorageAccountTypes = "UltraSSD_LRS"
 )
 
-// PossibleDiskStorageAccountTypesValues returns an array of possible values for the DiskStorageAccountTypes const type.
+// PossibleDiskStorageAccountTypesValues returns the possible values for the DiskStorageAccountTypes const type.
 func PossibleDiskStorageAccountTypesValues() []DiskStorageAccountTypes {
-	return []DiskStorageAccountTypes{DiskStorageAccountTypesPremiumLRS, DiskStorageAccountTypesPremiumZRS, DiskStorageAccountTypesStandardLRS, DiskStorageAccountTypesStandardSSDLRS, DiskStorageAccountTypesStandardSSDZRS, DiskStorageAccountTypesUltraSSDLRS}
+	return []DiskStorageAccountTypes{
+		DiskStorageAccountTypesPremiumLRS,
+		DiskStorageAccountTypesPremiumV2LRS,
+		DiskStorageAccountTypesPremiumZRS,
+		DiskStorageAccountTypesStandardLRS,
+		DiskStorageAccountTypesStandardSSDLRS,
+		DiskStorageAccountTypesStandardSSDZRS,
+		DiskStorageAccountTypesUltraSSDLRS,
+	}
 }
 
 // EncryptionType enumerates the values for encryption type.
@@ -1394,41 +1405,36 @@ func PossibleStatusLevelTypesValues() []StatusLevelTypes {
 // StorageAccountType enumerates the values for storage account type.
 type StorageAccountType string
 
-const (
-	// StorageAccountTypePremiumLRS ...
-	StorageAccountTypePremiumLRS StorageAccountType = "Premium_LRS"
-	// StorageAccountTypeStandardLRS ...
-	StorageAccountTypeStandardLRS StorageAccountType = "Standard_LRS"
-	// StorageAccountTypeStandardZRS ...
-	StorageAccountTypeStandardZRS StorageAccountType = "Standard_ZRS"
-)
-
-// PossibleStorageAccountTypeValues returns an array of possible values for the StorageAccountType const type.
-func PossibleStorageAccountTypeValues() []StorageAccountType {
-	return []StorageAccountType{StorageAccountTypePremiumLRS, StorageAccountTypeStandardLRS, StorageAccountTypeStandardZRS}
-}
-
-// StorageAccountTypes enumerates the values for storage account types.
+// StorageAccountTypes - Specifies the storage account type for the managed disk. Managed OS disk storage account type can
+// only be set when you create the scale set. NOTE: UltraSSDLRS can only be used with data disks. It
+// cannot be used with OS Disk. StandardLRS uses Standard HDD. StandardSSDLRS uses Standard SSD. PremiumLRS uses Premium SSD.
+// UltraSSDLRS uses Ultra disk. PremiumZRS uses Premium SSD zone redundant
+// storage. StandardSSD_ZRS uses Standard SSD zone redundant storage. For more information regarding disks supported for Windows
+// Virtual Machines, refer to
+// https://docs.microsoft.com/azure/virtual-machines/windows/disks-types and, for Linux Virtual Machines, refer to https://docs.microsoft.com/azure/virtual-machines/linux/disks-types
 type StorageAccountTypes string
 
 const (
-	// StorageAccountTypesPremiumLRS ...
-	StorageAccountTypesPremiumLRS StorageAccountTypes = "Premium_LRS"
-	// StorageAccountTypesPremiumZRS ...
-	StorageAccountTypesPremiumZRS StorageAccountTypes = "Premium_ZRS"
-	// StorageAccountTypesStandardLRS ...
-	StorageAccountTypesStandardLRS StorageAccountTypes = "Standard_LRS"
-	// StorageAccountTypesStandardSSDLRS ...
+	StorageAccountTypesPremiumLRS     StorageAccountTypes = "Premium_LRS"
+	StorageAccountTypesPremiumV2LRS   StorageAccountTypes = "PremiumV2_LRS"
+	StorageAccountTypesPremiumZRS     StorageAccountTypes = "Premium_ZRS"
+	StorageAccountTypesStandardLRS    StorageAccountTypes = "Standard_LRS"
 	StorageAccountTypesStandardSSDLRS StorageAccountTypes = "StandardSSD_LRS"
-	// StorageAccountTypesStandardSSDZRS ...
 	StorageAccountTypesStandardSSDZRS StorageAccountTypes = "StandardSSD_ZRS"
-	// StorageAccountTypesUltraSSDLRS ...
-	StorageAccountTypesUltraSSDLRS StorageAccountTypes = "UltraSSD_LRS"
+	StorageAccountTypesUltraSSDLRS    StorageAccountTypes = "UltraSSD_LRS"
 )
 
-// PossibleStorageAccountTypesValues returns an array of possible values for the StorageAccountTypes const type.
+// PossibleStorageAccountTypesValues returns the possible values for the StorageAccountTypes const type.
 func PossibleStorageAccountTypesValues() []StorageAccountTypes {
-	return []StorageAccountTypes{StorageAccountTypesPremiumLRS, StorageAccountTypesPremiumZRS, StorageAccountTypesStandardLRS, StorageAccountTypesStandardSSDLRS, StorageAccountTypesStandardSSDZRS, StorageAccountTypesUltraSSDLRS}
+	return []StorageAccountTypes{
+		StorageAccountTypesPremiumLRS,
+		StorageAccountTypesPremiumV2LRS,
+		StorageAccountTypesPremiumZRS,
+		StorageAccountTypesStandardLRS,
+		StorageAccountTypesStandardSSDLRS,
+		StorageAccountTypesStandardSSDZRS,
+		StorageAccountTypesUltraSSDLRS,
+	}
 }
 
 // UpgradeMode enumerates the values for upgrade mode.
